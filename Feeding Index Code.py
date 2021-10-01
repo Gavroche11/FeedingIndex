@@ -44,10 +44,7 @@ def representation(frames, x=1):
     return result
 
 
-    freq = frequency(coords['Approach'].values, FPS * freq_length, FPS).reshape(-1)
-    freq = np.concatenate((freq, np.full(shape=(FPS * freq_length - 1,), fill_value=freq[-1])))
-
-def frequency(arr, time, FPS):
+def temporal_density(arr, time, FPS):
     '''
     arr: 1D array of True, False
     time: float, length of moving bin (s)
@@ -57,8 +54,8 @@ def frequency(arr, time, FPS):
     def make_window(frame):
         return np.linspace(frame, frame + length, num=length, endpoint=False, dtype=int).T
     indices = np.arange(arr.shape[0] - length + 1)
-    freq = arr[make_window(indices).reshape(-1, length)].sum(axis=1) / time
-    return np.concatenate((freq, np.full(shape=(length - 1,), fill_value=freq[-1])))
+    td = arr[make_window(indices).reshape(-1, length)].sum(axis=1) / time
+    return np.concatenate((td, np.full(shape=(length - 1,), fill_value=td[-1])))
 
 def check_backwards(indices_for_eval, target, length):
     '''
