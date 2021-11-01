@@ -7,6 +7,8 @@ Original file is located at
     https://colab.research.google.com/drive/1aJ_MR1fhBmZN1C5v4dHHzmcOQReSo7Z2
 """
 
+"""Sample code for Video S5-6"""
+
 import numpy as np
 import pandas as pd
 import cv2
