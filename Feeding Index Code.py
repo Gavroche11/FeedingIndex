@@ -148,7 +148,7 @@ def lininterpol(df, bodyparts, ll_crit, absolute=True):
     '''
     return new_df, start, end
 
-"""Approach to Tray"""
+"""D-AF (frequency of tray approach)"""
 
 def return_approach(filepath, params, ll_crit=0.7, absolute=True, interval=0.5, FPS=30):
     '''
@@ -206,7 +206,7 @@ def return_approach(filepath, params, ll_crit=0.7, absolute=True, interval=0.5, 
 
     return coords, start, end
 
-"""In Food Zone"""
+"""D-AD (duration in food zone)"""
 
 def return_infz(filepath, fz_x, ll_crit=0.7, absolute=True):
     '''
@@ -226,7 +226,7 @@ def return_infz(filepath, fz_x, ll_crit=0.7, absolute=True):
 
     return coords, start, end
 
-"""Bout"""
+"""D-CF (frequency of bout)"""
 
 def return_bout(filepath, params, ll_crit=0.7, absolute=True, interval=0.5, FPS=30, latency=3.0):
     '''
