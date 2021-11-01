@@ -34,20 +34,6 @@ def representation(frames, x=1):
             result.append(j[-1])
     return result
 
-
-def temporal_density(arr, time, FPS):
-    '''
-    arr: 1D array of True, False
-    time: float, length of moving bin (s)
-    FPS: FPS of the video
-    '''
-    length = int(time * FPS)
-    def make_window(frame):
-        return np.linspace(frame, frame + length, num=length, endpoint=False, dtype=int).T
-    indices = np.arange(arr.shape[0] - length + 1)
-    td = arr[make_window(indices).reshape(-1, length)].sum(axis=1) / time
-    return np.concatenate((td, np.full(shape=(length - 1,), fill_value=td[-1])))
-
 def check_backwards(indices_for_eval, target, length):
     '''
     indices_for_eval: 1D array of indices for evaluation
@@ -285,3 +271,17 @@ def return_bout(filepath, params, ll_crit=0.7, absolute=True, interval=0.5, FPS=
     coords['Bout'] = (coords['Bout R'] | coords['Bout L'])
 
     return coords, start, end
+
+# Temporal Density
+def temporal_density(arr, time, FPS):
+    '''
+    arr: 1D array of True, False
+    time: float, length of moving bin (s)
+    FPS: FPS of the video
+    '''
+    length = int(time * FPS)
+    def make_window(frame):
+        return np.linspace(frame, frame + length, num=length, endpoint=False, dtype=int).T
+    indices = np.arange(arr.shape[0] - length + 1)
+    td = arr[make_window(indices).reshape(-1, length)].sum(axis=1) / time
+    return np.concatenate((td, np.full(shape=(length - 1,), fill_value=td[-1])))
