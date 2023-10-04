@@ -5,7 +5,7 @@ import matplotlib.cm as cm
 import matplotlib.colors
 from matplotlib.image import NonUniformImage
 
-# Sample code related to Fig. 6, S7-8
+# Sample code related to Fig. 7, S10-11
 
 def lininterpol(df, bodyparts, ll_crit, absolute=True):
     '''
@@ -98,7 +98,7 @@ width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
 height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
 background_path = 'CAGE_BACKGROUND' # Write the path of background image
 
-# Fig. 6A, S7
+# Fig. 7A, S10
 top = cm.get_cmap('jet', 256)
 newcmp = matplotlib.colors.ListedColormap(np.concatenate((np.zeros(shape=(10, 4)), top(np.linspace(0, 1, 256))), axis=0),
                                           name='newjet')
@@ -131,7 +131,7 @@ for bp in bodyparts:
     ax.images.append(im)
     ax.set_axis_off()
 
-# Fig. 6B, S8A-B top
+# Fig. S11A-B top
 fig = plt.figure(figsize=(width/20, height/20))
 coords, _, _ = lininterpol(df, bodyparts, ll_crit=ll_crit, absolute=absolute)
 ax = plt.gca()
@@ -144,7 +144,7 @@ ax.legend(loc='upper right')
 ax.invert_yaxis()
 
 
-# Fig. 6B, S8A-B middle
+# Fig. S11A-B middle
 fig = plt.figure(figsize=(width/20, height/20))
 ax = plt.gca()
 background = plt.imread(background_path)
@@ -159,7 +159,7 @@ ax.invert_yaxis()
 ax.set_axis_off()
 
 
-# Fig. 6B, S8A-B Bottom
+# Fig. 7B, S11A-B Bottom
 fig = plt.figure(figsize=(width/20, height/20))
 ax = plt.gca()
 background = plt.imread(background_path)
